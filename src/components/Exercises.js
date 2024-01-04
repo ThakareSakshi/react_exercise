@@ -2,12 +2,15 @@ import React from 'react'
 import Card from './Card'
 import {useState} from 'react'
 
-const Exercises = ({data}) => {
+const Exercises = ({data,handleInputData}) => {
 
     const [inputText,setInputText]=useState("")
+    console.log(data)
 
     const handleInput=(e)=>{
         setInputText(e.target.value);
+        handleInputData(e.target.value);
+        
 
     }
   return (
@@ -16,8 +19,10 @@ const Exercises = ({data}) => {
 
       <div className='cards'>
         {
+
            data.map((info)=>{
-                 <Card key={info.id} {...info}/>
+          //  { console.log(info)}
+                return  <Card key={info.id} url={info.gifUrl} bodyPart={info.bodyPart} name={info.name} equipment={info.equipment}/>
            }) 
 
         }

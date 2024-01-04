@@ -16,7 +16,7 @@ function App() {
     url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`,
     params: {limit: '10'},
     headers: {
-      'X-RapidAPI-Key': 'cf4d5e6099msh4319fd91e2cfce2p110419jsnb558428ce19d',
+      'X-RapidAPI-Key': '87a200e624mshab5cff6970a3a3ap1ffb1ejsn7e0637884834',
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     }
   };
@@ -28,22 +28,28 @@ function App() {
       console.log(response.data);
      if(response.data){ 
       setData(response.data)
+      console.log(data)
 
      }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      setbodypart("back")
     }
    }
 
    fetchData()
-  },[])
+  },[bodypart])
+
+  function handleInputData(text){
+       setbodypart(text)
+  }
 
 
   return (
     <div className="App">
       <Header/>
       <Images/>
-      <Exercises data={data}/>
+      <Exercises data={data} handleInputData={handleInputData}/>
       
       
     </div>
