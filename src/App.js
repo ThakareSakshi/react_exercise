@@ -10,11 +10,12 @@ function App() {
 
   const [bodypart,setbodypart]=useState("back")
   const [data,setData]=useState([]);
+  const [limit,setLimit]=useState(10);
 
   const options = {
     method: 'GET',
     url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`,
-    params: {limit: '10'},
+    params: {limit: limit},
     headers: {
       'X-RapidAPI-Key': '87a200e624mshab5cff6970a3a3ap1ffb1ejsn7e0637884834',
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
@@ -28,7 +29,7 @@ function App() {
       console.log(response.data);
      if(response.data){ 
       setData(response.data)
-      console.log(data)
+      // console.log(data)
 
      }
     } catch (error) {
@@ -38,10 +39,11 @@ function App() {
    }
 
    fetchData()
-  },[bodypart])
+  },[bodypart,limit])
 
   function handleInputData(text){
        setbodypart(text)
+       setLimit(limit+10);
   }
 
 
@@ -50,6 +52,7 @@ function App() {
       <Header/>
       <Images/>
       <Exercises data={data} handleInputData={handleInputData}/>
+      <button onClick={()=>{setLimit(limit+10)}}>Load More</button>
       
       
     </div>

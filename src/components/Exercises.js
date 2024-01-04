@@ -5,10 +5,11 @@ import {useState} from 'react'
 const Exercises = ({data,handleInputData}) => {
 
     const [inputText,setInputText]=useState("")
-    console.log(data)
+    // console.log(data)
 
     const handleInput=(e)=>{
         setInputText(e.target.value);
+        
         handleInputData(e.target.value);
         
 
